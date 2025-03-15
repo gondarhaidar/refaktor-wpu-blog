@@ -11,12 +11,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UploadController;
 
 Route::get('/', function () {
-    return view('home', ['title' => 'Home']);
+    $posts = Post::with(['user'])->filter(request(['search', 'user']))->paginate(9)->withQueryString();
+    return view('posts', ['title' => 'Blog', 'posts' => $posts]);
 });
 // Route::get('/view', [ViewController::class, 'index']);
-Route::get('/home', function () {
-    return view('home', ['title' => 'Home']);
-});
 Route::get('/contact', function () {
     return view('contact', ['title' => 'Contact']);
 });
@@ -41,6 +39,6 @@ Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::get('/dashboard', function(){
     return view('dashboard');
-})->middleware('auth');
+});
 Route::resource('/blogs', PostController::class)->middleware('auth');
 Route::post('/upload-image', [UploadController::class, 'upload']);

@@ -11,6 +11,7 @@
     <x-sidebar></x-sidebar>
     <div class=" p-4 sm:ml-64">
         <div>
+            <p>{{dd(auth())}}</p>
             <h1 class="text-2xl font-bold text-gray-799">Dashboard</h1>
             <hr class="bg-slate-700 h-[2px]"/>
         </div>

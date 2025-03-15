@@ -9,24 +9,8 @@
     @endif
 
     <x-slot:title>{{$title}}</x-slot>
-    <div class="max-w-lg mx-auto bg-white p-5 shadow-md rounded">
-        <form action="/login" method="post">
-            @csrf
-            <div class="w-full my-2">
-                <label for="name" class="block text-gray-700 font-semibold mb-2">Email</label>
-                <input type="email" required placeholder="Email" name="email"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 ease-in-out">
-             </div>
-            <div class="w-full my-2">
-                <label for="name" class="block text-gray-700 font-semibold mb-2">Password</label>
-                <input type="password" required placeholder="*******" name="password"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 ease-in-out">
-             </div>
-             <button class="px-5 py-2 w-full bg-slate-700 text-slate-50 rounded max-w-md my-2 hover:bg-slate-400 hover:text-slate-900">Login</button>
-             <p class="text-sm mt-2 text-center">
-                Or <a href="/register" class="text-blue-600 hover:underline">register here</a>
-             </p>
-        </form>
+    <div class="max-w-lg mx-auto bg-white p-5 shadow-md rounded my-[20vh]">
+        <h1 class="text-3xl font-extrabold text-center">Login</h1>
         <a href="/redirect"
             class="w-full font-bold shadow-sm rounded-lg py-1 my-2 bg-white text-gray-900 flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-gray-300 border border-gray-300">
                 <div class="bg-white p-2 rounded-full hover:bg-gray-300">
@@ -46,7 +30,7 @@
                     </svg>
                 </div>
                 <span class="">
-                    Sign Up with Google
+                    Login with Google
                 </span>
         </a>
     </div>
