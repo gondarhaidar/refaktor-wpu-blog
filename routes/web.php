@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -9,9 +10,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UploadController;
+use App\Models\Comment;
 
 Route::get('/', function () {
-    $posts = Post::with(['user'])->filter(request(['search', 'user']))->paginate(9)->withQueryString();
+    $posts = Post::with(['user'])->filter(request(['search', 'user']))->get();
     return view('posts', ['title' => 'Blog', 'posts' => $posts]);
 });
 // Route::get('/view', [ViewController::class, 'index']);
@@ -19,12 +21,13 @@ Route::get('/contact', function () {
     return view('contact', ['title' => 'Contact']);
 });
 Route::get('/posts', function () {
-    $posts = Post::with(['user'])->filter(request(['search', 'user']))->paginate(9)->withQueryString();
+    $posts = Post::with(['user'])->filter(request(['search', 'user']))->get();
     return view('posts', ['title' => 'Blog', 'posts' => $posts]);
 });
-Route::get('/posts/{post:slug}', function (Post $post) {
-    return view('post', ['title' => 'Single Post', 'post' => $post]);
-});
+Route::get('/posts/{post:slug}', [function (Post $post) {
+    $comments = Comment::where('post_id', $post->id)->get();
+    return view('post', ['title' => 'Single Post', 'post' => $post, 'comments' => $comments]);
+}]);
 Route::get('/about', function () {
     return view('about', ['title' => 'About']);
 });
@@ -39,6 +42,8 @@ Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::get('/dashboard', function(){
     return view('dashboard');
-});
+})->middleware('auth');
 Route::resource('/blogs', PostController::class)->middleware('auth');
 Route::post('/upload-image', [UploadController::class, 'upload']);
+
+Route::post('/comment', [CommentController::class, 'store'])->middleware('auth');

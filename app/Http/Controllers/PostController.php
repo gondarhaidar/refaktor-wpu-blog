@@ -44,6 +44,7 @@ class PostController extends Controller
     }
 
     $validateData['slug'] = $slug;
+    $validateData['main_img'] = 'ODCgZAA83N0jQKR2NAmbhAQnlBqSjlTMfmIf1azz.png';
     $validateData['category_id'] = 1;
 
     $validateData['category_id'] = 1;

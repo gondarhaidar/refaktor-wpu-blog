@@ -11,6 +11,12 @@
     <x-slot:title>{{$title}}</x-slot>
     <div class="max-w-lg mx-auto bg-white p-5 shadow-md rounded my-[20vh]">
         <h1 class="text-3xl font-extrabold text-center">Login</h1>
+        <form action="/login" method="post">
+            @csrf
+            <input type="email" name="email"><br>
+            <input type="password" name="password"><br>
+            <button type="submit">Login</button>
+        </form>
         <a href="/redirect"
             class="w-full font-bold shadow-sm rounded-lg py-1 my-2 bg-white text-gray-900 flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-gray-300 border border-gray-300">
                 <div class="bg-white p-2 rounded-full hover:bg-gray-300">

@@ -13,8 +13,8 @@ class LoginController extends Controller
     {
         $validateData = $request->validate([
             'name' => 'required',
-            'email' => 'email:dns|required|unique:users',
-            'password' => 'min:5'
+            'email' => 'email|required|unique:users',
+            'password' => 'min:5|required'
         ]);
         $validateData['password'] = Hash::make($validateData['password']);
         User::create($validateData);
@@ -23,7 +23,7 @@ class LoginController extends Controller
 
     public function login(Request $request) {
         $credentials = $request->validate([
-            'email' => 'email:dns|required',
+            'email' => 'email|required',
             'password' => 'required'
         ]);
         if(Auth::attempt($credentials)){
