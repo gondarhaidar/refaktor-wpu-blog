@@ -14,7 +14,9 @@
             @csrf
             <input type="text" placeholder="Tulis komentar" name="body" required
             class="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400 transition duration-300 rounded-r-none">
+            @auth
             <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+            @endauth
             <input type="hidden" name="post_id" value="{{$post->id}}">
             <button class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 rounded-l-none">
                 Kirim
