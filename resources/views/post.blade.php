@@ -4,6 +4,18 @@
     <div class="bg-white p-2 rounded mb-2 shadow-sm shadow-slate-400">
         <h1 class="text-3xl font-bold">{{$post->title}}</h1>
         <p class="text-sm text-slate-500">{{$post->created_at->diffForHumans()}}</p>
+        @can('admin')
+        <div class="my-1 flex gap-1">
+            <a href="/blogs/edit/{{$post->slug}}" class="text-sm bg-green-600 text-white rounded hover:bg-green-500 px-3 py-1 my-2">Edit</a>
+
+            <form action="/blogs/{{$post->slug}}" method="POST">
+                @csrf
+                @method('delete')
+                <input type="hidden" name="slug" value="{{$post->slug}}">
+                <button class="text-sm bg-red-600 text-white rounded hover:bg-red-500 px-3 py-1 my-2">Hapus</button>
+            </form>
+        </div>
+        @endcan
         <article class="font-sans">
             {!!$post->body!!}
         </article>

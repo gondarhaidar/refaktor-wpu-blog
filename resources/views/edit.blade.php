@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
+    <title>Edit | {{$post->slug}}</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -12,17 +12,16 @@
 </head>
 <body class="bg-gray-100"> 
     <div class="container mx-auto p-1 md:p-0">
-        <form action="/blogs" method="POST""> 
+        <form action="/blogs/{{$post->slug}}" method="POST"> 
             @csrf
+            @method('PUT')
             <div class="w-full my-4 bg-white shadow-sm rounded-md p-3 border border-gray-300">
                 <label for="title" class="block text-gray-700 font-semibold mb-2">Title</label>
-                <input autocomplete="off" type="text" required placeholder="Title" name="title" id="title"
+                <input autocomplete="off" type="text" required placeholder="Title" name="title" id="title" value="{{$post->title}}"
                 class="w-full px-3 py-2 border border-gray-300 rounded-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 transition-all duration-300 ease-in-out">
             </div>
-
-                <input autocomplete="off" type="hidden" required placeholder="Slug" name="slug" id="slug"
+            <input autocomplete="off" type="hidden" required placeholder="Slug" name="slug" id="slug"
                     class="w-full px-3 py-2 border border-gray-300 rounded-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 transition-all duration-300 ease-in-out">
-
             <div class="w-full my-4 bg-white shadow-sm rounded-md p-3 border border-gray-300">
                 <label for="name" class="block text-gray-700 font-semibold mb-2">Content</label>
                 <div id="editor"></div>
@@ -52,6 +51,7 @@
         placeholder: 'Write content',
         theme: 'snow',
     });
+    quill.root.innerHTML = `{!! $post->body !!}`;
 
     function imageHandler() {
         var input = document.createElement('input');

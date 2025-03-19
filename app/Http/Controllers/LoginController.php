@@ -29,11 +29,11 @@ class LoginController extends Controller
             $userFromDb->save();
             auth('web')->login($userFromDb);
             session()->regenerate();
-            return redirect('/dashboard');
+            return redirect('/');
         }
         auth('web')->login($userFromDb);
         session()->regenerate();
-        return redirect('/dashboard');
+        return redirect('/');
     }
 
 

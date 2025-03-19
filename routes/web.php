@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Models\Post;
 use App\Models\User;
@@ -36,12 +37,12 @@ Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
 Route::get('/redirect', [LoginController::class, 'redirect'])->name('redirect')->middleware('guest');
 Route::get('/auth/callback', [LoginController::class, 'callback'])->name('callback')->middleware('guest');
 Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');
-Route::get('/dashboard', function(){
-    return view('dashboard');
-})->middleware('auth');
-Route::resource('/blogs', PostController::class)->middleware('auth');
-Route::post('/upload-image', [UploadController::class, 'upload']);
+Route::resource('/blogs', PostController::class)->except(['edit', 'edit'])->middleware('auth');
+Route::get('/blogs/edit/{post:slug}', [PostController::class, 'edit'])->middleware('auth');
+Route::put('/blogs/{post:slug}', [PostController::class, 'update'])->middleware('auth');
+Route::delete('/blogs/{post:slug}', [PostController::class, 'destroy'])->middleware('auth');
+Route::post('/upload-image', [UploadController::class, 'upload'])->middleware('auth');
 
 Route::post('/comment', [CommentController::class, 'store'])->middleware('auth');
 
-
+Route::resource('/dashboard', AdminController::class);
