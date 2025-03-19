@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Middleware\AdminMiddleware;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +24,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('admin', function (User $user) {
-            return $user->email === 'gondarsb@gmail.com';
+            $allowedEmails = ['gondarsb@gmail.com', 'gondarahmadhaidar@gmail.com']; 
+            return in_array($user->email, $allowedEmails);
         });
+        Route::middleware('admin', AdminMiddleware::class);
+        
     }
 }

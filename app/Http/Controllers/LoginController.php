@@ -6,32 +6,36 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    public function register(Request $request)
+    public function redirect()
     {
-        $validateData = $request->validate([
-            'name' => 'required',
-            'email' => 'email|required|unique:users',
-            'password' => 'min:5|required'
-        ]);
-        $validateData['password'] = Hash::make($validateData['password']);
-        User::create($validateData);
-        return redirect('/login')->with('success', 'registration sucessfully');
+        return Socialite::driver('google')
+            ->with(['redirect_uri' => config('services.google.redirect')])
+            ->redirect();
+    }
+    public function callback()
+    {
+        $userFromGoogle = Socialite::driver('google')->stateless()->user();
+        $userFromDb = User::where('google_id', $userFromGoogle->getID())->first();
+
+        if (!$userFromDb) {
+            $userFromDb = new User();
+            $userFromDb->email = $userFromGoogle->getEmail();
+            $userFromDb->google_id = $userFromGoogle->getID();
+            $userFromDb->name = $userFromGoogle->getName();
+            $userFromDb->save();
+            auth('web')->login($userFromDb);
+            session()->regenerate();
+            return redirect('/dashboard');
+        }
+        auth('web')->login($userFromDb);
+        session()->regenerate();
+        return redirect('/dashboard');
     }
 
-    public function login(Request $request) {
-        $credentials = $request->validate([
-            'email' => 'email|required',
-            'password' => 'required'
-        ]);
-        if(Auth::attempt($credentials)){
-            session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
-        return back()->with('loginFailed', 'login failed');
-    }
 
     public function logout(Request $request)
     {
