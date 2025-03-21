@@ -22,14 +22,10 @@ Route::get('/posts', function () {
     return view('posts', ['title' => 'Blog', 'posts' => $posts]);
 });
 Route::get('/posts/{post:slug}', [function (Post $post) {
-    $comments = Comment::where('post_id', $post->id)->get();
-    return view('post', ['title' => 'Single Post', 'post' => $post, 'comments' => $comments]);
+    return view('post', ['title' => 'Single Post', 'post' => $post]);
 }]);
 
-Route::get('/users/{user:id}', function (User $user) {
-    // $posts = $user->posts->load('user', 'category');
-    return view('posts', ['title' => $user->name, 'posts' => $user->posts]);
-});
+
 Route::view('/register', 'register', ['title' => 'Register page'])->middleware('guest');
 Route::post('/register', [LoginController::class, 'register'])->middleware('guest');
 Route::view('/login', 'login', ['title' => 'Login page'])->name('login')->middleware('guest');

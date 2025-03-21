@@ -35,7 +35,7 @@
             </button>
         </form>
     </div>
-@foreach($comments as $comment)
+@foreach($post->comment as $comment)
     <div class="bg-white p-2 rounded shadow-sm shadow-slate-400 mb-2">
         <h1 class="font-bold text-md">{{$comment->user->name}}</h1>
         <p class="text-slate-600 text-sm">{{$comment->updated_at->diffForHumans()}}</p>

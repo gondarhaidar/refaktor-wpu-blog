@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         //     'category_id' => mt_rand(1, 4),
         //     'body' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum veritatis illum qui ex cum eos at cupiditate necessitatibus sit ea perferendis sed eum repellendus sequi aspernatur similique labore odit ratione, doloremque possimus. Porro nostrum ad vel eaque perferendis doloribus voluptates eos quas iusto modi maiores, inventore doloremque minima quisquam dolores architecto magni. Quibusdam earum voluptas blanditiis eveniet animi asperiores repellendus expedita pariatur non est sapiente, tenetur voluptatem rerum sunt totam molestiae recusandae deleniti necessitatibus error quaerat. Ad illum odit veniam nemo numquam ipsa aliquid dolor, blanditiis at vel repudiandae in omnis sed totam quisquam voluptatibus hic harum eos quas eius.'
         // ]);
-        Post::factory(20)->create();
+        // Post::factory(20)->create();
         // User::create([
         //     'name' => 'gondar',
         //     'email' => 'gondarsb@gmail.com',
@@ -41,6 +41,6 @@ class DatabaseSeeder extends Seeder
         //     'password' => Hash::make('password'),
         //     'remember_token' => Str::random(10),
         // ]);
-        // Comment::factory(30)->create();
+        Comment::factory(300)->create();
     }
 }
