@@ -1,3 +1,3 @@
-<x-Layout>
+<x-layout>
     <x-sidebar></x-sidebar>
-  </x-Layout>
+  </x-layout>

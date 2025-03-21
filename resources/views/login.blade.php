@@ -1,5 +1,5 @@
 
-<x-Layout>
+<x-layout>
     @if(session('loginFailed'))
     <x-Alert type="error">{{session('loginFailed')}}</x-Alert>
     @endif

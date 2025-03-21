@@ -1,8 +1,8 @@
-<x-Layout>
+<x-layout>
     <x-slot:title>{{$title}}</x-slot>
     <div class="relative">
       @if(session('success'))
-      <x-Alert type="success">{{session('success')}}</x-Alert>
+      <x-alert type="success">{{session('success')}}</x-alert>
       @endif
       <div class="relative">
         @if(request()->has('search'))

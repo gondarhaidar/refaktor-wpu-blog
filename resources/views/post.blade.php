@@ -1,4 +1,4 @@
-<x-Layout>
+<x-layout>
 
     <x-slot:title>{{$title}}</x-slot> 
     <div class="bg-white p-2 rounded mb-2 shadow-sm shadow-slate-400">
