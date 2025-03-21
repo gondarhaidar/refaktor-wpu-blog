@@ -18,7 +18,7 @@
           </button>
         </form>
       </div>
-      @if(count($posts) < 1)
+      @if(count($posts) < 1 && request()->has('search'))
       <div class="bg-white p-2 rounded mb-2">
         <h1 class="text-2xl font-bold m-0">Hasil pencarian <span class="text-blue-700 underline">{{request('search')}}</span> tidak ditemukan</h1>
       </div>
