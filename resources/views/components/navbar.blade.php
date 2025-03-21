@@ -1,6 +1,11 @@
 <nav class="bg-gray-800" x-data="{ isOpen: false }">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex h-16 items-center justify-between">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      @if(request()->has('search'))
+        <a class="h-full flex flex-col justify-center" href="/">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 bg-gray-400 rounded-full hover:border hover:border-black p-2" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+        @endif
         <div class="flex items-center">
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
