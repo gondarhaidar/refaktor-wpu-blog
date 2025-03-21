@@ -1,11 +1,11 @@
 
 <x-layout>
     @if(session('loginFailed'))
-    <x-Alert type="error">{{session('loginFailed')}}</x-Alert>
+    <x-alert type="error">{{session('loginFailed')}}</x-alert>
     @endif
     
     @if(session('success'))
-    <x-Alert type="success">Registration success, please login</x-Alert>
+    <x-alert type="success">Registration success, please login</x-alert>
     @endif
 
     <x-slot:title>{{$title}}</x-slot>

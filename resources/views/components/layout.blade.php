@@ -14,7 +14,7 @@
 <body class="h-full">
 
 <div class="min-h-full">
-  <x-Navbar></x-Navbar>
+  <x-navbar></x-navbar>
   <main>
     <div class="mx-auto max-w-7xl px-2 py-6 sm:px-6 lg:px-8">
       {{$slot}}
