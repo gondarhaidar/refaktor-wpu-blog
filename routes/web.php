@@ -3,23 +3,16 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UploadController;
-use App\Models\Comment;
-
 
 Route::get('/', function () {
     $posts = Post::with(['user'])->filter(request(['search', 'user']))->get();
     return view('posts', ['title' => 'Gondar blog', 'posts' => $posts]);
 });
-
-Route::get('/posts/{post:slug}', [function (Post $post) {
-    return view('post', ['title' => 'Single Post', 'post' => $post]);
-}]);
 
 
 Route::view('/register', 'register', ['title' => 'Register page'])->middleware('guest');
@@ -38,4 +31,7 @@ Route::post('/upload-image', [UploadController::class, 'upload'])->middleware('a
 
 Route::post('/comment', [CommentController::class, 'store'])->middleware('auth');
 
-Route::resource('/dashboard', AdminController::class);
+
+Route::get('/{post:slug}', [function (Post $post) {
+    return view('post', ['title' => 'Single Post', 'post' => $post]);
+}]);
