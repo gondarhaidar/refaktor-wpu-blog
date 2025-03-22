@@ -17,15 +17,16 @@ Route::get('/', function () {
     return view('posts', ['title' => 'Gondar blog', 'posts' => $posts]);
 });
 
-Route::get('/{post:slug}', [function (Post $post) {
+Route::get('/posts/{post:slug}', [function (Post $post) {
     return view('post', ['title' => 'Single Post', 'post' => $post]);
 }]);
 
 
 Route::view('/register', 'register', ['title' => 'Register page'])->middleware('guest');
 Route::post('/register', [LoginController::class, 'register'])->middleware('guest');
-Route::view('/login', 'login', ['title' => 'Login page'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
+Route::get('/login', function(){
+    return view('login', ['title' => 'gondar blog | login']);
+})->name('login')->middleware('guest');
 Route::get('/redirect', [LoginController::class, 'redirect'])->name('redirect')->middleware('guest');
 Route::get('/auth/callback', [LoginController::class, 'callback'])->name('callback')->middleware('guest');
 Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');

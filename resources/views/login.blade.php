@@ -4,10 +4,6 @@
     <x-alert type="error">{{session('loginFailed')}}</x-alert>
     @endif
     
-    @if(session('success'))
-    <x-alert type="success">Registration success, please login</x-alert>
-    @endif
-
     <x-slot:title>{{$title}}</x-slot>
     <div class="max-w-lg mx-auto bg-white p-5 shadow-md rounded my-[20vh]">
         <h1 class="text-3xl font-extrabold text-center">Login</h1>
