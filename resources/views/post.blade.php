@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-slot:title>{{$title}}</x-slot> 
+    <x-slot:title>{{$post->title}}</x-slot> 
     <div class="bg-white p-2 rounded mb-2 shadow-sm shadow-slate-400">
         <h1 class="text-3xl font-bold">{{$post->title}}</h1>
         <p class="text-sm text-slate-500">{{$post->created_at->diffForHumans()}}</p>

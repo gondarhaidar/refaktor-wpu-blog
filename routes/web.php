@@ -14,14 +14,10 @@ use App\Models\Comment;
 
 Route::get('/', function () {
     $posts = Post::with(['user'])->filter(request(['search', 'user']))->get();
-    return view('posts', ['title' => 'Blog', 'posts' => $posts]);
+    return view('posts', ['title' => 'Gondar blog', 'posts' => $posts]);
 });
 
-Route::get('/posts', function () {
-    $posts = Post::with(['user'])->filter(request(['search', 'user']))->get();
-    return view('posts', ['title' => 'Blog', 'posts' => $posts]);
-});
-Route::get('/posts/{post:slug}', [function (Post $post) {
+Route::get('/{post:slug}', [function (Post $post) {
     return view('post', ['title' => 'Single Post', 'post' => $post]);
 }]);
 
