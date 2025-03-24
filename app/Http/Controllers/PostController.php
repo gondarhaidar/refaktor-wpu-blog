@@ -51,7 +51,7 @@ class PostController extends Controller
 
     Post::create($validateData);
 
-    return redirect('/posts')->with('success', 'Postingan berhasil dibuat');
+    return redirect('/')->with('success', 'Postingan berhasil dibuat');
 
     }
 
