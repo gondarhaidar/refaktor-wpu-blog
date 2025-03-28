@@ -85,26 +85,17 @@ class PostController extends Controller
         $originalSlug = Str::slug($validateData['slug']); // Pastikan slug bersih
         $slug = $originalSlug;
         $index = 2;
-    
+        
         while (Post::where('slug', $slug)->exists()) {
             $slug = $originalSlug . '-' . $index;
             $index++;
         }
-    
+        
         $validateData['slug'] = $slug;
         $validateData['main_img'] = 'ODCgZAA83N0jQKR2NAmbhAQnlBqSjlTMfmIf1azz.png';
         
-        $post->title = $validateData['title'];
-        $post->slug = $validateData['slug'];
-        $post->user_id = $validateData['user_id'];
-        $post->body = $validateData['body'];
-        $post->main_img = 'ODCgZAA83N0jQKR2NAmbhAQnlBqSjlTMfmIf1azz.png';
-
-        if ($post->save()) {
-            return redirect('/posts')->with('success', 'Berhasil di edit');
-        } else {
-            return back()->with('error', 'Gagal memperbarui data');
-        }
+        Post::where('slug', $request->slug)->update($validateData);
+        
 
 
         return redirect('/')->with('success', 'Berhasil di edit');

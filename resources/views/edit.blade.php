@@ -27,6 +27,7 @@
                 <div id="editor"></div>
              </div>
              <input autocomplete="off" type="hidden" name="user_id" value="{{auth()->user()->id}}">
+             <input autocomplete="off" type="hidden" name="slug" value="{{$post->slug}}">
             <input autocomplete="off" type="hidden" name="body" id="hiddenContent">
             <button type="submit" class="bg-gray-800 text-gray-50 px-4 py-2 rounded sm:max-w-sm w-full font-semibold hover:bg-gray-600">Save</button>       
         </form>

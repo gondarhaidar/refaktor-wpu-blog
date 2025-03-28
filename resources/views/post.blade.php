@@ -22,6 +22,7 @@
     </div>
 
     <div>
+        <hr class="h-[4px] bg-slate-600 mb-2 shadow shadow-gray-600">
         <form action="/comment" class="grid grid-cols-[1fr_80px] mb-2" method="post">
             @csrf
             <input type="text" placeholder="Tulis komentar" name="body" required
@@ -35,6 +36,11 @@
             </button>
         </form>
     </div>
+    @if(count($post->comment) < 1)
+        <div class="">
+             <h1 class="text-center text-gray-700">belum ada komentar</h1>
+        </div>
+    @endif
 @foreach($post->comment as $comment)
     <div class="bg-white p-2 rounded shadow-sm shadow-slate-400 mb-2">
         <h1 class="font-bold text-md">{{$comment->user->name}}</h1>
@@ -45,5 +51,11 @@
         </div>
     </div>
 @endforeach
+<script>
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.classList.add('mx-auto');
+    });
+</script>
 </x-Layout> 
 
