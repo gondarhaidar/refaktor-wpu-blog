@@ -32,6 +32,6 @@ Route::post('/upload-image', [UploadController::class, 'upload'])->middleware('a
 Route::post('/comment', [CommentController::class, 'store'])->middleware('auth');
 
 
-Route::get('/{post:slug}', [function (Post $post) {
-    return view('post', ['title' => 'Single Post', 'post' => $post]);
-}]);
+Route::get('/{post:slug}', function (Post $post) {
+    return view('post', ['post' => $post->load('comment.user')]);
+});
