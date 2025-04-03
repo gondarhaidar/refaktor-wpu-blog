@@ -16,7 +16,7 @@
             </form>
         </div>
         @endcan
-        <article class="font-sans">
+        <article class="font-sans mx-2 text-sm">
             {!!$post->body!!}
         </article>
     </div>
@@ -43,7 +43,7 @@
     @endif
 @foreach($post->comment as $comment)
     <div class="bg-white p-2 rounded shadow-sm shadow-slate-400 mb-2">
-        <h1 class="font-bold text-md">{{$comment->user->name}}</h1>
+        <h1 class="font-bold text-md mb-2">{{$comment->user->name}}</h1>
         <p class="text-slate-600 text-sm">{{$comment->updated_at->diffForHumans()}}</p>
         <p class="text-sm">{{$comment->body}}</p>
         <div>
@@ -54,7 +54,7 @@
 <script>
     const images = document.querySelectorAll('img');
     images.forEach(img => {
-        img.classList.add('mx-auto');
+        img.classList.add('mx-auto mx-2');
     });
 </script>
 </x-Layout> 

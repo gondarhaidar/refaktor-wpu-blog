@@ -26,6 +26,7 @@
                 <label for="name" class="block text-gray-700 font-semibold mb-2">Content</label>
                 <div id="editor"></div>
              </div>
+             <input type="hidden" name="category_id" value="1">
              <input autocomplete="off" type="hidden" name="user_id" value="{{auth()->user()->id}}">
              <input autocomplete="off" type="hidden" name="slug" value="{{$post->slug}}">
             <input autocomplete="off" type="hidden" name="body" id="hiddenContent">

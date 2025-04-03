@@ -20,6 +20,16 @@
                 class="w-full px-3 py-2 border border-gray-300 rounded-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 transition-all duration-300 ease-in-out">
             </div>
 
+            {{-- <div class="w-full my-4 bg-white shadow-sm rounded-md p-3 border border-gray-300">
+                <label for="title" class="block text-gray-700 font-semibold mb-2">Kategori</label>
+                <select name="category_id" id="" class="rounded">
+                    @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+            </div> --}}
+            <input type="hidden" name="category_id" value="1">
+
                 <input autocomplete="off" type="hidden" required placeholder="Slug" name="slug" id="slug"
                     class="w-full px-3 py-2 border border-gray-300 rounded-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 transition-all duration-300 ease-in-out">
 

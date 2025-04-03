@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('create');
+        return view('create', ['categories' => Category::all()]);
     }
 
     /**
@@ -35,6 +36,7 @@ class PostController extends Controller
         'title' => 'required',
         'slug' => 'required',
         'user_id' => 'required',
+        'category_id' => 'required',
         'body' => 'required|string'
     ]);
     $originalSlug = Str::slug($validateData['slug']); // Pastikan slug bersih
