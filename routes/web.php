@@ -10,7 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UploadController;
 
 Route::get('/', function () {
-    $posts = Post::with(['user'])->filter(request(['search', 'user']))->get();
+    $posts = Post::with(['user'])->filter(request(['search', 'user', 'category']))->get();
     return view('posts', ['title' => 'Gondar blog', 'posts' => $posts]);
 });
 
