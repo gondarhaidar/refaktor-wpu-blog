@@ -30,6 +30,7 @@ Route::delete('/blogs/{post:slug}', [PostController::class, 'destroy'])->middlew
 Route::post('/upload-image', [UploadController::class, 'upload'])->middleware('auth');
 
 Route::post('/comment', [CommentController::class, 'store'])->middleware('auth');
+Route::put('/comment', [CommentController::class, 'update'])->middleware('auth');
 
 
 Route::get('/{post:slug}', function (Post $post) {

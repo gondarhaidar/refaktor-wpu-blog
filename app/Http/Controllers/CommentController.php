@@ -16,4 +16,12 @@ class CommentController extends Controller
         Comment::create($validateData);
         return back()->with('success', 'komentar terkirim');
     }
+
+    public function update(Request $request){
+        $validateData = $request->validate([
+            'body' => 'required|string'
+        ]);
+        Comment::where('id', $request->id)->update($validateData);
+        return back();
+    }
 }

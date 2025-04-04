@@ -36,4 +36,4 @@
     
       @endforeach
   </div>
-</x-Layout>2
+</x-Layout>
