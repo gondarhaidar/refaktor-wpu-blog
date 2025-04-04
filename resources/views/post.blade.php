@@ -21,9 +21,10 @@
         </article>
     </div>
 
+    <hr class="h-[2px] bg-black mb-2 shadow shadow-gray-600">
+
     <div>
-        <hr class="h-[4px] bg-slate-600 mb-2 shadow shadow-gray-600">
-        <form action="/comment" class="grid grid-cols-[1fr_80px] mb-2" method="post">
+        <form action="/comment" class="grid grid-cols-[1fr_auto] w-full mx-auto mb-3 z-0 overflow-hidden" method="post">
             @csrf
             <input type="text" placeholder="Tulis komentar" name="body" required
             class="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400 transition duration-300 rounded-r-none">
@@ -36,6 +37,8 @@
             </button>
         </form>
     </div>
+
+
     @if(count($post->comment) < 1)
         <div class="">
              <h1 class="text-center text-gray-700">belum ada komentar</h1>

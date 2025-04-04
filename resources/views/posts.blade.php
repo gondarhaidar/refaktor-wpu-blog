@@ -10,13 +10,15 @@
             <x-back></x-back>
         </a>
         @endif
-        <form action="" class="grid grid-cols-[1fr_80px] max-w-[800px] mx-auto mb-3 z-0">
+        <form action="" class="grid grid-cols-[1fr_auto] w-full max-w-[800px] mx-auto mb-3 z-0 overflow-hidden">
           <input type="search" placeholder="Cari" name="search" required
-          class="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400 transition duration-300 rounded-r-none" value="{{request('search')}}">
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400 transition duration-300 rounded-r-none" 
+            value="{{ request('search') }}">
           <button class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 rounded-l-none">
             Cari
           </button>
         </form>
+        
       </div>
       @if(count($posts) < 1 && request()->has('search'))
       <div class="bg-white p-2 rounded mb-2">
